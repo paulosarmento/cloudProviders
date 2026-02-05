@@ -1,48 +1,41 @@
-### 📌 Publicação 1 – Introdução ao Docker (Manipulando Containers)
+🚀 Iniciando meus estudos em Cloud com Docker – Manipulando Containers
 
-Hoje comecei oficialmente meus estudos em **Cloud Computing**, iniciando pelo **Docker** 🚀
+Hoje avancei no meu aprendizado em Docker e estudei os principais comandos para criação e gerenciamento de containers na prática.
 
-Aprendi os primeiros conceitos práticos sobre manipulação de containers, como:
+Principais pontos que aprendi:
 
-✅ Executar meu primeiro container
+✅ Executar o primeiro container
+docker run hello-world
 
-`docker run hello-world`
-
-✅ Criar containers com nome personalizado
-
-`docker run --name mynginx nginx`
-
-✅ Rodar containers em segundo plano (detached)
-
-`docker run -d nginx`
+✅ Criar containers com nome personalizado e rodar em segundo plano
+docker run --name mynginx nginx
+docker run -d mynginx
 
 ✅ Mapear portas para acessar aplicações no navegador
+docker run -d -p 8080:80 nginx
 
-`docker run -d -p 8080:80 nginx`
+✅ Listar, parar, iniciar e remover containers
+docker ps / docker ps -a
+docker stop / docker start
+docker rm / docker rm -f
 
-✅ Listar, parar e remover containers
-
-- `docker ps`
-- `docker stop`
-- `docker rm -f`
-
-✅ Acessar o container via terminal
-
-`docker exec -it mynginx bash`
+✅ Acessar containers via terminal
+docker exec -it mynginx bash
 
 Também entendi a diferença entre:
 
-- **docker run** → cria um novo container
-- **docker exec** → executa comandos em um container já rodando
-- **docker attach** → conecta ao processo principal do container
+docker run → cria um novo container
 
-Pequenos passos, mas fundamentais para construir uma base sólida em Cloud ☁️
+docker exec → executa comandos em um container já em execução
 
-Meu foco é aprender de forma prática e consistente todos os dias.
+docker attach → conecta ao processo principal do container
 
-Se você também está estudando Docker ou Cloud, vamos trocar experiências 💬
+Pequenos passos, mas essenciais para construir uma base sólida em Cloud Computing ☁️
+Vou documentar minha evolução diariamente e compartilhar aqui meu progresso.
 
-#Docker #CloudComputing #DevOps #AprendizadoContínuo #Tecnologia #Estudos #Linux #Infraestrutura #AWS #CarreiraTech
+Se você também estuda Docker ou Cloud, vamos trocar experiências!
+
+#Docker #CloudComputing #DevOps #Estudos #AprendizadoContínuo #Tecnologia #Linux #AWS #CarreiraTech
 
 docker tutorial
 https://github.com/codeedu/wsl2-docker-quickstart/blob/main/README.md
