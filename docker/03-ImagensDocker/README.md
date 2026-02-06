@@ -55,6 +55,7 @@ docker pull ubuntu
 docker pull nginx:1.21
 docker images prune
 docker images prune -a
+docker images --no-trunc
 docker builder prune -a -f
 docker system df
 
@@ -93,3 +94,14 @@ docker build --build-arg NODE_VERSION=21 -t paulosarmento/docker-node-latest:lat
 docker run -p 3001:3001 -e MESSAGE="Hello www" paulosarmento/docker-node-latest:latest
 docker run -p 3001:3001 --name appnode -e MESSAGE="Hello www" paulosarmento/docker-node-latest:latest
 docker run -u root -p 3001:3001 --name appnode -e MESSAGE="Hello www" paulosarmento/docker-node-latest:latest
+docker images --no-trunc
+
+## Go
+
+Verificar arquitetura
+file main
+main: Mach-O 64-bit executable x86_64
+go build -o main main.go
+
+Compilar para rodar no mac
+GOARCH=arm64 GOOS=darwin go build -o main main.go
