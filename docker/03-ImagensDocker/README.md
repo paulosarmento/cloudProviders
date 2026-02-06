@@ -1,51 +1,3 @@
-📦 Docker – Imagens, Registries e Docker Hub
-
-Hoje avancei nos estudos sobre Imagens Docker e como elas são gerenciadas e distribuídas.
-
-Principais aprendizados:
-
-🔹 Uma imagem Docker é um pacote imutável que contém tudo o que a aplicação precisa para rodar (código, dependências e configurações).
-Os containers são instâncias criadas a partir dessas imagens.
-
-🔹 As imagens são formadas por camadas, o que economiza espaço em disco e acelera downloads, já que camadas podem ser reutilizadas entre diferentes imagens.
-
-🔹 Entendi a diferença entre:
-
-Imagens oficiais (ex: nginx, redis, mysql)
-
-Imagens de terceiros (usuario/imagem)
-
-🔹 Aprendi a gerenciar imagens com comandos como:
-
-docker images
-
-docker rmi
-
-docker inspect
-
-docker pull
-
-🔹 Também estudei sobre Registries, como:
-
-Docker Hub
-
-Amazon ECR
-
-Google GCR
-
-Azure ACR
-
-E boas práticas importantes:
-✔ Usar tags específicas (ex: nginx:1.21)
-✔ Limpar imagens não utilizadas (docker image prune)
-✔ Verificar espaço em disco (docker system df)
-✔ Entender aspectos de segurança e SBOM
-
-Esse conhecimento é fundamental para trabalhar com containers em ambientes profissionais e cloud computing ☁️
-Seguimos aprendendo um pouco todos os dias 🚀
-
-#Docker #CloudComputing #DevOps #Containers #DockerHub #Infraestrutura #AprendizadoContínuo #Tecnologia #AWS #CarreiraTech
-
 # image
 
 docker inspect nginx
@@ -105,3 +57,16 @@ go build -o main main.go
 
 Compilar para rodar no mac
 GOARCH=arm64 GOOS=darwin go build -o main main.go
+
+docker build -t paulosarmento/docker-go-example:latest .
+docker build --no-cache -t paulosarmento/docker-go-example:latest .
+
+docker run --rm paulosarmento/docker-go-example
+docker run --rm paulosarmento/docker-go-example 8081
+docker run --rm -p 8080:8081 paulosarmento/docker-go-example 8081
+docker inspect paulosarmento/docker-go-example
+docker ps --filter "label=env=production"
+
+- ONBUILD -> comando só roda na outra imagem top
+  docker build -t paulosarmento/docker-node-base:latest -f Dockerfile.base .
+  docker build -t paulosarmento/docker-node-child:latest -f Dockerfile.child .
