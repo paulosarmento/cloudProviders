@@ -6,7 +6,6 @@ const message = process.env.MESSAGE || "Hello World!";
 app.get("/", (req, res) => {
   res.send(message);
 });
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
