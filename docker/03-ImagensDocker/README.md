@@ -85,3 +85,11 @@ acessa imagens dentro do seu registro ACR via Azure Portal.
 Google GCR
 https://docs.cloud.google.com/artifact-registry/docs/overview?hl=pt-br
 precisa saber o nome do repositório para acessar as imagens.
+
+## Build
+
+docker build -t paulosarmento/docker-node-example:latest .
+docker build --build-arg NODE_VERSION=21 -t paulosarmento/docker-node-latest:latest .
+docker run -p 3001:3001 -e MESSAGE="Hello www" paulosarmento/docker-node-latest:latest
+docker run -p 3001:3001 --name appnode -e MESSAGE="Hello www" paulosarmento/docker-node-latest:latest
+docker run -u root -p 3001:3001 --name appnode -e MESSAGE="Hello www" paulosarmento/docker-node-latest:latest
