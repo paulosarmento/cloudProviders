@@ -89,6 +89,6 @@ docker buildx build \
 --cache-from type=local,src=../docker-cache \
 -t paulosarmento/docker-node-latest:latest .
 docker buildx prune --filter=until=24h
-docker buildx rm
+docker buildx rm mybuilder
 docker context ls
 docker build -t paulosarmento/docker-go-example:latest .
