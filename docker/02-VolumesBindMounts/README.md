@@ -1,3 +1,5 @@
+# publicacao
+
 ☁️ Docker – Persistência de Dados e Volumes
 
 Hoje estudei um dos conceitos mais importantes do Docker: a natureza efêmera dos containers e como garantir a persistência de dados.

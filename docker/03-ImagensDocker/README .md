@@ -1,3 +1,5 @@
+# publicacao
+
 📦 Docker – Imagens, Registries e Docker Hub
 
 Hoje avancei nos estudos sobre Imagens Docker e como elas são gerenciadas e distribuídas.
@@ -46,7 +48,7 @@ Seguimos aprendendo um pouco todos os dias 🚀
 
 #Docker #CloudComputing #DevOps #Containers #DockerHub #Infraestrutura #AprendizadoContínuo #Tecnologia #AWS #CarreiraTech
 
----
+# publicacao 2
 
 Dockerfile, boas práticas e otimização de imagens
 

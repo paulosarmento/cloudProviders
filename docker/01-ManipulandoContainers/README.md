@@ -1,3 +1,5 @@
+# publicacao
+
 🚀 Iniciando meus estudos em Cloud com Docker – Manipulando Containers
 
 Hoje avancei no meu aprendizado em Docker e estudei os principais comandos para criação e gerenciamento de containers na prática.
