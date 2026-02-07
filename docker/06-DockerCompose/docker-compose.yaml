@@ -1,0 +1,80 @@
+services:
+  node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./node:/usr/src/app
+    environment:
+      MONGO_URL: mongodb://mongo:27017/test
+    # env_file:
+    #   - ./node/.env
+    networks:
+      - backend-net
+      - db-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  node-watch:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    environment:
+      MONGO_URL: mongodb://mongo:27017/test
+    depends_on:
+      mongo:
+        condition: service_healthy
+    develop:
+      watch:
+        - path: ./node
+          target: /usr/src/app
+          action: sync
+          ignore:
+            - "./node/node_modules"
+
+        - path: ./node/package.json
+          action: rebuild
+
+        - path: ./node/index.js
+          target: /usr/src/app/index.js
+          action: sync+restart
+
+    networks:
+      - backend-net
+      - db-net
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx_html:/usr/share/nginx/html
+    networks:
+      - fontend-net
+  mongo:
+    image: mongo:latest
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    volumes:
+      # Bind Mount
+      # - ./.docker/mongo_data:/data/db
+      # - ./mongo_data:/data/db
+      # Volumes
+      - mongo_data:/data/db
+    networks:
+      - db-net
+
+volumes:
+  mongo_data:
+
+networks:
+  db-net:
+  backend-net:
+  fontend-net:
