@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+
+      # Problema que o volume sobrescreve a pasta node_modules dentro do container

@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./nest:/home/node/app
+
+    # Esta é uma solucao pq a gente consegue gerar sempre a node_modules no conatiner e como vai ter o volume
+    # sempre sincronizando para nossa maquina vai ser muito mais eficiente vai sempre executar o start.sh
+    # esta solucao nao é legal se vc tem uma maquina com o hardware limitado inicializacao lenta
