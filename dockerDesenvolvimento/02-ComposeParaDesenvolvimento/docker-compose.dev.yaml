@@ -1,0 +1,50 @@
+services:
+  web:
+    build:
+      args:
+        # - NODEMON_VERSION=2.0.15
+        - NODEMON_VERSION=${NODEMON_VERSION:-2.0.15}
+      context: .
+      dockerfile: Dockerfile.dev
+    # command: tail -f /dev/null
+    volumes:
+      - .:/home/node/app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+      # - path: .env.override
+      #   required: false
+    depends_on:
+      db:
+        condition: service_healthy
+        # restart: true
+    # networks:
+    #   - externalapi_default
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  db:
+    image: mysql:8.0.30-debian
+    platform: linux/amd64
+    restart: on-failure:5 | always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: my_database
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s # com que frequencia o healthcheck vai ser executado
+      timeout: 5s # quanto tempo o healthcheck vai demorar para responder ao ping do mysql no container mysql
+      retries: 5 # quantas vezes o healthcheck vai tentar se conectar ao mysql antes de dar erro
+      start_period: 10s # quanto tempo o healthcheck vai demorar para iniciar antes de dar erro ao mysql
+      # ou seja, o healthcheck sera executado a cada 30s e se ele nao responder em 5s ele ira dar um erro e 5 tentativas de delay antes de dar erro ao mysql e 10s de delay antes de comecar o healthcheck
+    # depends_on:
+    #   - xpto
+    # networks:
+    #   - externalapi_default
+
+  # xpto: apenas para exemplificar o uso do restart no container do mysql
+  #   image: xpto:latest
+networks:
+  externalapi_default:
+    external: true

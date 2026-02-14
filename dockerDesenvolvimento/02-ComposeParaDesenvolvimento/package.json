@@ -1,0 +1,16 @@
+{
+  "name": "01-dockerfiledesenvolvimento",
+  "version": "1.0.0",
+  "description": "docker build -t minha-imagem-node -f Dockerfile.dev --no-cache .",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.17.0"
+  }
+}
