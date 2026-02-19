@@ -20,3 +20,12 @@ docker compose -f docker-compose.dev.yaml -p feature-xpto up
 docker compose -f docker-compose.dev.yaml -p feature-xpto ps
 
 COMPOSE_PROJECT_NAME=feature-xpto docker compose -f docker-compose.dev.yaml up
+
+docker compose -f docker-compose.dev.yaml -p feature-xpto exec web1 bash
+
+docker compose -f docker-compose.dev.yaml --profile nginx up
+docker compose -f docker-compose.dev.yaml cp nginx:/etc/nginx ./nginx
+docker compose -f docker-compose.dev.yaml cp package.json nginx:/tmp
+sudo service docker restart
+
+https://docs.docker.com/compose/how-tos/environment-variables/envvars/

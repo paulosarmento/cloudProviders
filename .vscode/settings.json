@@ -1,0 +1,13 @@
+{
+  "terminal.integrated.profiles.osx": {
+    "dev": {
+      "path": "zsh",
+      "args": [
+        "-l"
+      ],
+      "env": {
+        "COMPOSE_FILE": "docker-compose.dev.yml"
+      }
+    },
+  }
+}
